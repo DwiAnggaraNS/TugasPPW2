@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 
@@ -27,3 +28,8 @@ Route::middleware(['auth'])->group(function() {
 });
 Route::get('restricted', function () {
     return "Anda berusia lebih dari 18 tahun!"; })->middleware('checkage');
+
+Route::get('/datauser', [UserController::class, 'index'])->name('datausers.index');
+Route::post('/datauser', [UserController::class, 'store'])->name('datausers.store');
+Route::put('/datauser/{user:id}', [UserController::class, 'update'])->name('datausers.update');
+Route::delete('/datauser/{user:id}', [UserController::class, 'destroy'])->name('datausers.destroy');
