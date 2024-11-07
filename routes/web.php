@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\GalleryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,3 +34,4 @@ Route::get('/datauser', [UserController::class, 'index'])->name('datausers.index
 Route::post('/datauser', [UserController::class, 'store'])->name('datausers.store');
 Route::put('/datauser/{user:id}', [UserController::class, 'update'])->name('datausers.update');
 Route::delete('/datauser/{user:id}', [UserController::class, 'destroy'])->name('datausers.destroy');
+Route::resource('gallery', GalleryController::class);
