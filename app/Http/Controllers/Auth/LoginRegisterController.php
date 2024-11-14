@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Jobs\SendMailJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 class LoginRegisterController extends Controller
@@ -26,12 +28,22 @@ class LoginRegisterController extends Controller
             'isAdmin' => 'required|boolean'
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'isAdmin' => $request->isAdmin
         ]);
+
+        // Data untuk email
+         $data = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'registration_date' => Carbon::now()->toFormattedDateString()
+        ];
+        
+        // Dispatch job untuk mengirim email
+        dispatch(new SendMailJob($data));
 
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);

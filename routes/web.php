@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -35,3 +36,7 @@ Route::post('/datauser', [UserController::class, 'store'])->name('datausers.stor
 Route::put('/datauser/{user:id}', [UserController::class, 'update'])->name('datausers.update');
 Route::delete('/datauser/{user:id}', [UserController::class, 'destroy'])->name('datausers.destroy');
 Route::resource('gallery', GalleryController::class);
+
+Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
+
+Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');

@@ -12,31 +12,31 @@
                         <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
-                            @if (isset ($error))
-                            <div class="alert alert-danger">{{ $errors }}</div>
-                            @endif
+                            @error('name')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="email" class="col-md-4 col-form-label text-md-end text-start">Email Address</label>
                         <div class="col-md-6">
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
-                            @if (isset ($error))
-                            <div class="alert alert-danger">{{ $errors }}</div>
-                            @endif
+                            @error('email')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="email" class="col-md-4 col-form-label text-md-end text-start">Password</label>
+                        <label for="password" class="col-md-4 col-form-label text-md-end text-start">Password</label>
                         <div class="col-md-6">
                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
-                            @if (isset ($error))
-                            <div class="alert alert-danger">{{ $errors }}</div>
-                            @endif
+                            @error('password')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="password-confirmation" class="col-md-4 col-form-label text-md-end text-start">Confirm Password</label>
+                        <label for="password_confirmation" class="col-md-4 col-form-label text-md-end text-start">Confirm Password</label>
                         <div class="col-md-6">
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                         </div>
@@ -48,9 +48,9 @@
                                 <option value="0">Regular User</option>
                                 <option value="1">Admin</option>
                             </select>
-                            @if (isset ($error))
-                                <div class="alert alert-danger">{{ $errors }}</div>
-                            @endif
+                            @error('isAdmin')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3 row">
