@@ -12,13 +12,7 @@ class GalleryController extends Controller
      * Display a listing of the resource.
      */
     public function index () {
-        $data = array(
-        'id' => "posts",
-        'menu' => 'Gallery',
-        'galleries' => Post::where('picture', '!=',
-        '')->whereNotNull('picture')->orderBy('created_at', 'desc')->paginate (30)
-        );
-        return view('gallery.index')->with ($data);
+        return view('gallery.index');
     }
     /**
      * Show the form for creating a new resource.
