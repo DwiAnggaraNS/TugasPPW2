@@ -31,10 +31,10 @@ Route::middleware(['auth'])->group(function() {
 Route::get('restricted', function () {
     return "Anda berusia lebih dari 18 tahun!"; })->middleware('checkage');
 
-Route::get('/datauser', [UserController::class, 'index'])->name('datausers.index');
-Route::post('/datauser', [UserController::class, 'store'])->name('datausers.store');
-Route::put('/datauser/{user:id}', [UserController::class, 'update'])->name('datausers.update');
-Route::delete('/datauser/{user:id}', [UserController::class, 'destroy'])->name('datausers.destroy');
+Route::get('/user', [UserController::class, 'index'])->name('datausers.index');
+Route::post('/user', [UserController::class, 'store'])->name('datausers.store');
+Route::put('/user/{user:id}', [UserController::class, 'update'])->name('datausers.update');
+Route::delete('/user/{user:id}', [UserController::class, 'destroy'])->name('datausers.destroy');
 Route::resource('gallery', GalleryController::class);
 
 Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
